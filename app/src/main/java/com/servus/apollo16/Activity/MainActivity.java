@@ -42,20 +42,6 @@ public class MainActivity extends AppCompatActivity  {
                 User user = new User(password,login);
 
                 String url = "http://10.0.2.2:5000/servus/user";
-                /*JSONObject userData = Util.POST(url);
-                String testlog=null;
-                try {
-                    testlog = userData.getString("phonetype");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                name=(TextView) layout.findViewById(R.id.textViewTEST);
-
-                if(userData.toString().equals("{}"))
-                    name.setText("Login ou mot de passe erroné");
-                else
-                    name.setText("Félicitation " + testlog + " tu es connecté à ServUS");*/
                 name=(TextView) layout.findViewById(R.id.textViewTEST);
                 JSONObject res = Util.POST(url,user);
                 if(res==null)
@@ -71,11 +57,6 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
 
-
-
-
-            //name=(TextView) layout.findViewById(R.id.textViewTEST);
-            //name.setText(login);
         }
     };
 
