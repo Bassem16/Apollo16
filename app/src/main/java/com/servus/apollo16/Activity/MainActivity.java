@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity  {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    name.setText("Félicitation " + testlog + " tu es connecté à ServUS");
+                    name.setText("Félicitation " + testlog + "! Tu es connecté à ServUS!");
                 }
             }
 
