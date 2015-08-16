@@ -2,7 +2,6 @@ package com.servus.apollo16.Activity;
 
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import com.servus.apollo16.Beans.User;
 import com.servus.apollo16.R;
 import com.servus.apollo16.Util.Util;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity  {

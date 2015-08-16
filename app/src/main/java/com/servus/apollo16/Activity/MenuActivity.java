@@ -1,8 +1,8 @@
 package com.servus.apollo16.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,14 +50,14 @@ public class MenuActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 // ListView Clicked item index
-                int itemPosition = position;
+
 
                 // ListView Clicked item value
                 String itemValue = (String) listViewInformation.getItemAtPosition(position);
 
                 // Show Alert
                 Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                        "Position :" + position + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                         .show();
 
             }
@@ -65,10 +65,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
