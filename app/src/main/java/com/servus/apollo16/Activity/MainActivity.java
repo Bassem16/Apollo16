@@ -1,5 +1,6 @@
 package com.servus.apollo16.Activity;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 String url = "http://10.0.2.2:5000/servus/user";
                 name=(TextView) layout.findViewById(R.id.textViewTEST);
-                JSONObject res = Util.POST(url,user);
+                JSONObject res = Util.POST(url, user);
                 if(res==null)
                     name.setText("Login ou mot de passe erroné");
                 else {
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity  {
                         e.printStackTrace();
                     }
                     name.setText("Félicitation " + testlog + "! Tu es connecté à ServUS!");
+                    startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+                    overridePendingTransition(R.anim.slideright, R.anim.slideright2);
                 }
             }
 
@@ -80,6 +83,8 @@ public class MainActivity extends AppCompatActivity  {
 
         buttonConnexion = (Button) layout.findViewById(R.id.button_connexion);
         buttonConnexion.setOnClickListener(clickListenerConnection);
+
+
 
         buttonRegister = (Button) layout.findViewById(R.id.button_register);
         // On aurait très bien pu utiliser « setContentView(R.layout.activity_main) » bien sûr !
