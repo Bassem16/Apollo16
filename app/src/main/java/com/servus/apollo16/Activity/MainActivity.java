@@ -1,17 +1,16 @@
 package com.servus.apollo16.Activity;
 
+
 import android.content.Intent;
+
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.servus.apollo16.Beans.User;
 import com.servus.apollo16.R;
@@ -21,15 +20,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity  {
-    RelativeLayout layout = null;
-    TextView text = null;
-    TextView name = null;
-    EditText editTextLogin = null;
-    EditText editTextPswd = null;
-    Button buttonConnexion= null;
-    Button buttonRegister = null;
+    private RelativeLayout layout = null;
+    private TextView text = null;
+    private TextView name = null;
+    private EditText editTextLogin = null;
+    private EditText editTextPswd = null;
+    private Button buttonConnexion= null;
+    private Button buttonRegister = null;
 
-    private View.OnClickListener clickListenerConnection = new View.OnClickListener() {
+    private final View.OnClickListener clickListenerConnection = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -44,7 +43,9 @@ public class MainActivity extends AppCompatActivity  {
 
                 String url = "http://10.0.2.2:5000/servus/user";
                 name=(TextView) layout.findViewById(R.id.textViewTEST);
-                JSONObject res = Util.POST(url, user);
+
+                JSONObject res = Util.postUser(url,user);
+
                 if(res==null)
                     name.setText("Login ou mot de passe erroné");
                 else {

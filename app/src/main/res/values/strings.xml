@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">ServUs!</string>
+<<<<<<< HEAD
     <string name="password_string">password</string>
     <string name="login_string">Login</string>
     <string name="connection_string">Connexion</string>
     <string name="register_string">Register</string>
     <string name="hello_world">Hello world!</string>
+=======
+    <string name="login_string">Login</string>
+    <string name="password_string">password</string>
+    <string name="connection_string">Connexion</string>
+    <string name="register_string">Register</string>
+>>>>>>> origin/master
     <string name="action_settings">Settings</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="welcome_message">Bienvenue dans ton espace ServUs!</string>
