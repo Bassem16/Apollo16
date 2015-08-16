@@ -1,15 +1,32 @@
 package com.servus.apollo16.Beans;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
 /**
  * Created by basse on 15/08/2015.
  */
-public class User {
+public class User implements Serializable{
 
     private String _id = "";
     private String login = "";
     private String lastName = "";
     private String name = "";
     private String password = "";
+
+    public User(JSONObject json) {
+        this.password = "";
+        try {
+            this.login = json.getString("userPseudo");
+            this.lastName= json.getString("userNom");
+            this.name = json.getString("userPrenom");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public User(String password, String login) {
         this.password = password;

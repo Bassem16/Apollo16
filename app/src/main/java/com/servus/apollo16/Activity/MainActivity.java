@@ -48,15 +48,13 @@ public class MainActivity extends AppCompatActivity  {
                 if(res==null)
                     name.setText("Login ou mot de passe erroné");
                 else {
-                    String testlog = null;
-                    try {
-                        testlog = res.getString("userPseudo");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    name.setText("Félicitation " + testlog + "! Tu es connecté à ServUS!");
-                    startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+                    user =new User(res);
+                    name.setText("Félicitation " + user.getLogin() + "! Tu es connecté à ServUS!");
+                    Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
                     overridePendingTransition(R.anim.slideright, R.anim.slideright2);
+                    finish();
                 }
             }
 
