@@ -1,35 +1,23 @@
 package com.servus.apollo16.Util;
 
 import android.os.Build;
-import android.util.Log;
 
 import com.servus.apollo16.Beans.User;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Scanner;
 
 /**
@@ -37,7 +25,7 @@ import java.util.Scanner;
  */
 public class Util {
 
-    public static JSONObject GET(String serviceUrl) {
+    public static JSONObject getAllUsers(String serviceUrl) {
         disableConnectionReuseIfNecessary();
         JSONObject jsonObj=null;
         HttpURLConnection urlConnection = null;
@@ -65,18 +53,12 @@ public class Util {
             while ((line = r.readLine()) != null) {
                 sb.append(line);
             }
-            String stream = sb.toString();
+           // String stream = sb.toString();
             jsonObj = new JSONObject("{\"phonetype\":\"N95\",\"cat\":\"WP\"}");
             return jsonObj;
-        } catch (MalformedURLException e) {
-            // URL is invalid
-        } catch (SocketTimeoutException e) {
-            // data retrieval or connection timed out
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             // could not read response body
             // (could not create input stream)
-        } catch (JSONException e) {
-            // response body is no valid JSON string
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -86,16 +68,12 @@ public class Util {
         return jsonObj;
     }
 
-    public static JSONObject POST(String serviceUrl, User user) {
+    public static JSONObject postUser(String serviceUrl, User user) {
         disableConnectionReuseIfNecessary();
-        StringBuilder sb = new StringBuilder();
 
-        URL url = null;
         JSONObject res=null;
-
-
         try {
-            url = new URL(serviceUrl);
+            URL url = new URL(serviceUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.setRequestMethod("POST");
@@ -116,11 +94,9 @@ public class Util {
             out.write(jsonParam.toString());
             out.close();
 
-
-
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader r = new BufferedReader(new InputStreamReader(in));
-            sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = r.readLine()) != null) {
                 sb.append(line);
@@ -128,17 +104,12 @@ public class Util {
             String stream = sb.toString();
             JSONArray userData = new JSONArray(stream);
 
-            int x = userData.length();
             if(userData.length()>0)
                 res =  (JSONObject) userData.get(0);
             else res = null;
 
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (MalformedURLException | ProtocolException | JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

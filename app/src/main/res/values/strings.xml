@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ServUs!</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="login_string">Login</string>
+    <string name="password_string">password</string>
+    <string name="connection_string">Connexion</string>
+    <string name="register_string">Register</string>
     <string name="action_settings">Settings</string>
 </resources>
